@@ -1,7 +1,6 @@
 // Big thanks to https://github.com/nyxtom/drawing-webrtc and https://www.redblobgames.com/grids/hexagons
 
 const { promisify } = require('util')
-const path = require('path')
 const http = require('http')
 const express = require('express')
 const bodyParser = require('body-parser')
