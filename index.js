@@ -17,7 +17,7 @@ app.use(bodyParser.json())
 const server = http.createServer(app)
 const clients = {}
 
-const redisClient = redis.createClient()
+const redisClient = redis.createClient(process.env.REDIS_URL)
 
 const asyncRedisClient = {
   del: promisify(redisClient.del).bind(redisClient),
@@ -102,7 +102,7 @@ app.get('/connect', auth, (req, res) => {
   let client = {
     id: req.user.id,
     user: req.user,
-    redis: redis.createClient(),
+    redis: redis.createClient(process.env.REDIS_URL),
     emit: (event, data) => {
       res.write(`id: ${uuid.v4()}\n`)
       res.write(`event: ${event}\n`)
